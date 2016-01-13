@@ -1,0 +1,33 @@
+> x<-read.csv("hw1_data.csv")
+ x[1:2,]  #subset: extract the first two rows
+ 
+# What is the value of Ozone in the 47th row?
+ > x[47,1]
+ 
+ #How many missing values are in the Ozone column of this data frame?
+ > colSums(is.na(x))
+  Ozone Solar.R    Wind    Temp   Month     Day 
+     37       7       0       0       0       0 
+	 
+#What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation
+> z<-x[complete.cases(x),]
+> mean(z[["Ozone"]])
+
+#Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90.
+# What is the mean of Solar.R in this subset?
+> mydata<-x[x$Ozone>31 & x$Temp>90,]
+>Sol<-mydata[complete.cases(mydata),]
+> mean(Sol[["Solar.R"]])
+
+#What is the mean of "Temp" when "Month" is equal to 6?
+
+> z<-x[complete.cases(x),]  #ommit this step if you don`t mind working with NA values
+> mydata1<-z[z$Month=6]
+> mean(mydata1[["Temp"]])
+
+What is the max value of ozone in May? Month 5
+> z<-x[complete.cases(x),]
+> mydata2<-z[z$Month==5,]
+> max(mydata2[["Ozone"]])
+
+
